@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TEST.WEBAPI.NET6.Data;
+using TEST.WEBAPI.NET6.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,8 @@ builder.Services.AddCors();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseMiddleware<ExceptionMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
